@@ -1,0 +1,8 @@
+<dx-data-grid [dataSource]="device_location_history">
+  id="gridContainer"
+  [showBorders]="true">
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true"
+             [allowedPageSizes]="[10, 25, 50, 100]"></dxo-pager>
+</dx-data-grid>

@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10 well">
+      <div class="row">
+        <div class="col-md-3">
+          <label for="name" class="control-label">Device name:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="name">
+            {{device?.fullName}}
+          </span>
+        </div>
+      </div>
+       
+      <div class="row">
+        <div class="col-md-3">
+          <label for="dateOfBirth" class="control-label">Received Day:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="dateOfBirth">
+           {{device?.receivedDate | date: 'MM/dd/yyyy'}}
+          </span>
+        </div>
+      </div>
+       
+      <div class="row">
+        <div class="col-md-3">
+          <label for="address" class="control-label">serialNumber:</label>
+        </div>
+        <div class="col-md-7">
+          <span name="address">
+            {{device?.serialNumber}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-offset-8 col-md-1">
+      <button type="submit" class="btn btn-info" (click)="deleteDevice()">Delete</button>
+    </div>
+    <div class="col-md-1">
+      <button type="button" class="btn btn-danger" (click)="redirectDeviceList()">Cancel</button>
+    </div>
+  </div>
+  <app-success-modal [modalHeaderText]="'Success message'" 
+  [modalBodyText]="'Action completed successfully'" 
+  [okButtonText]="'OK'"
+  (redirectOnOK)="redirectToDeviceList()"></app-success-modal>
+ 
+<app-error-modal [modalHeaderText]="'Error message'" 
+  [modalBodyText]="errorMessage" 
+  [okButtonText]="'OK'"></app-error-modal>
+</div>

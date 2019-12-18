@@ -1,0 +1,105 @@
+<!-- <p>
+  List of cust of coza store
+</p>
+<div class="row"> 
+    <div class="col-md-offset-10 col-md-2">
+      <a href="#">Create new Customer</a>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Customer id</th>
+              <th>Customer name</th>
+              <th>Customer address</th>
+              <th>PhoneNumber</th>
+              <th>EmailAddr</th>
+              <th>Password</th>
+              <th>Birthday</th>
+              <th>Avatar</th>
+              <th>Profile</th>
+              <th>CreatedBy</th>
+              <th>CreatedDate</th>
+              <th>UpdateBy</th>
+              <th>UpdatedDate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let cust of custs">
+              <td>{{cust.id}}</td>
+              <td>{{cust.fullName}}</td>
+              <td>{{cust.addr}}</td>
+              <td>{{cust.phoneNumber}}</td>
+              <td>{{cust.emailAddr}}</td>
+              <td>{{cust.password}}</td>
+              <td>{{cust.status}}</td>
+              <td>{{cust.avatar}}</td>
+              <td>{{cust.profile}}</td>
+              <td>{{cust.createdBy}}</td>
+              <td>{{cust.createdDate | date: 'dd/MM/yyyy'}}</td>
+              <td><button type="button" id="details" class="btn btn-default">Details</button></td>
+              <td><button type="button" id="update" class="btn btn-success">Update</button></td>
+              <td><button type="button" id="delete" class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div> -->
+
+  <dx-data-grid
+  id="grid"
+  [dataSource]="dataSource"  
+  [repaintChangesOnly]="true"
+  [showBorders]="true">
+
+  <dxo-scrolling mode="virtual"></dxo-scrolling>
+  <dxo-editing
+      mode="cell"
+      [refreshMode]="refreshMode"
+      [allowAdding]="true"
+      [allowUpdating]="true"
+      [allowDeleting]="true">
+  </dxo-editing>
+
+  <dxi-column dataField="Id" caption="Id">
+      <dxo-lookup [dataSource]="devicesData" valueExpr="Value" displayExpr="Text"></dxo-lookup>
+  </dxi-column>
+  <dxi-column dataField="ReceivedDate" dataType="date"></dxi-column>
+  <dxi-column dataField="FullName"></dxi-column>
+  <dxi-column dataField="ProductType"></dxi-column>
+  <dxi-column dataField="BranchName" caption="Branch Name" dataType="number">
+      <dxo-lookup [dataSource]="devicesData" valueExpr="Value" displayExpr="Text"></dxo-lookup>
+  </dxi-column>
+
+  
+</dx-data-grid>
+<div class="options">
+  <div class="caption">Options</div>
+  <div class="option">
+      <span>Refresh Mode:</span>
+      <dx-select-box
+          [(value)]="refreshMode"
+          [items]="refreshModes">
+      </dx-select-box>
+  </div>
+  <div id="requests">
+      <div>
+          <div class="caption">Network Requests</div>
+          <dx-button
+              id="clear"
+              text="Clear"
+              (onClick)="clearRequests()">
+          </dx-button>
+      </div>
+      <ul>
+          <li *ngFor="let request of requests">{{request}}</li>
+      </ul>
+  </div>
+</div>
+
+

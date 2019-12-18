@@ -1,0 +1,135 @@
+
+<div class="container-fluid">
+  <form [formGroup]="deviceForm" autocomplete="off" novalidate (ngSubmit)="updateDevice(deviceForm.value)">
+    <div class="form-horizontal well">
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">Full name: </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="name" id="name" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('name') && hasError('name', 'required')">Name is required</em>
+          <em *ngIf="validateControl('name') && hasError('name', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+       
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">ProductType:</label>
+        <div class="col-md-5">
+         <input type="text" formControlName="ProductType" id="ProductType" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('ProductType') && hasError('ProductType', 'required')">Name is required</em>
+          <em *ngIf="validateControl('ProductType') && hasError('ProductType', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+       
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">BranchName: </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="BranchName" id="BranchName" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('BranchName') && hasError('BranchName', 'required')">Name is required</em>
+          <em *ngIf="validateControl('BranchName') && hasError('BranchName', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+       
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">Origin </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="Origin" id="Origin" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('Origin') && hasError('Origin', 'required')">Name is required</em>
+          <em *ngIf="validateControl('Origin') && hasError('Origin', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">SerialNumber </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="SerialNumber" id="SerialNumber" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('SerialNumber') && hasError('SerialNumber', 'required')">Name is required</em>
+          <em *ngIf="validateControl('SerialNumber') && hasError('SerialNumber', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">QualityStatus </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="QualityStatus" id="QualityStatus" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('QualityStatus') && hasError('QualityStatus', 'required')">Name is required</em>
+          <em *ngIf="validateControl('QualityStatus') && hasError('QualityStatus', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+
+    
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">OwnerId </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="OwnerId" id="OwnerId" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('OwnerId') && hasError('OwnerId', 'required')">Name is required</em>
+          <em *ngIf="validateControl('OwnerId') && hasError('OwnerId', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">CurrentLocationId </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="CurrentLocationId" id="CurrentLocationId" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('CurrentLocationId') && hasError('CurrentLocationId', 'required')">Name is required</em>
+          <em *ngIf="validateControl('CurrentLocationId') && hasError('CurrentLocationId', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">Quantity </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="Quantity" id="Quantity" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('Quantity') && hasError('Quantity', 'required')">Name is required</em>
+          <em *ngIf="validateControl('Quantity') && hasError('Quantity', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name" class="control-label col-md-2">ReceivedDate </label>
+        <div class="col-md-5">
+         <input type="text" formControlName="ReceivedDate" id="ReceivedDate" class="form-control" />
+        </div>
+        <div class="col-md-5">
+         <em *ngIf="validateControl('ReceivedDate') && hasError('ReceivedDate', 'required')">Name is required</em>
+          <em *ngIf="validateControl('ReceivedDate') && hasError('ReceivedDate', 'maxlength')">Maximum allowed length is 60 characters.</em>
+        </div>
+      </div>
+
+
+      <br><br>
+      <div class="form-group">
+          <div class="col-md-offset-5 col-md-1">
+              <button type="submit" class="btn btn-info" [disabled]="!deviceForm.valid">Update</button>
+          </div>
+          <div class="col-md-1">
+             <button type="button" class="btn btn-danger" (click)="redirectToDeviceList()">Cancel</button>
+          </div>
+      </div>
+      
+    </div>
+  </form>
+  <app-success-modal [modalHeaderText]="'Success message'" 
+  [modalBodyText]="'Action completed successfully'" 
+  [okButtonText]="'OK'" 
+  (redirectOnOK)="redirectToDeviceList()"></app-success-modal>
+ 
+  <app-error-modal [modalHeaderText]="'Error message'" 
+  [modalBodyText]="errorMessage" 
+  [okButtonText]="'OK'"></app-error-modal>
+</div>

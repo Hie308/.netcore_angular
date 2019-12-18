@@ -1,0 +1,106 @@
+
+<dx-data-grid id="gridContainer"
+              [dataSource]="dataSource"
+              showBorders="true"       
+              height="600"
+              showBorders="true"
+              [allowColumnReordering]="true">
+  <dxo-paging [pageSize]="10"></dxo-paging>
+  <dxo-pager [showPageSizeSelector]="true"
+             [allowedPageSizes]="[5, 10, 20]"
+             [showInfo]="true">
+  </dxo-pager>
+  <dxo-filter-row [visible]="showFilterRow"
+                  [applyFilter]="currentFilter"></dxo-filter-row>
+  <dxo-header-filter [visible]="showHeaderFilter"></dxo-header-filter>
+  <dxo-search-panel [visible]="true"
+                    [width]="240"
+                    placeholder="Search..."></dxo-search-panel>
+  <dxo-editing mode="popup"
+               [allowUpdating]="true"
+               [allowAdding]="true"
+               [allowDeleting]="true">
+               <dxi-button
+               name="edit"
+               [onClick]="okClicked">
+              </dxi-button>
+    <dxo-popup title="Device Info"
+               [showTitle]="true"
+               [width]="700"
+               [height]="525"
+               [position]="{ my: 'top', at: 'top', of: window }">
+    </dxo-popup>
+    <dxo-form>
+      <dxi-item itemType="group" [colCount]="2" [colSpan]="2">
+        <!-- <dxi-item dataField="Id"></dxi-item> -->
+        <dxi-item dataField="serialNumber"></dxi-item>
+        <dxi-item dataField="origin"></dxi-item>
+        <dxi-item dataField="fullName"></dxi-item>
+        <dxi-item dataField="productType"></dxi-item>
+        <dxi-item dataField="branchName"></dxi-item>
+        <dxi-item dataField="currentLocationId"></dxi-item>
+        <dxi-item dataField="ownerId"></dxi-item>
+        <dxi-item dataField="receivedDate" dataType="date"></dxi-item>
+        
+      </dxi-item>
+    </dxo-form>
+  </dxo-editing>
+  
+
+  <dxi-column dataField="id" caption="Id">
+  </dxi-column>
+ 
+  <dxi-column dataField="serialNumber" caption="Serial Number" >
+    <dxo-header-filter groupInterval="100"></dxo-header-filter>
+    <dxi-validation-rule type="stringLength" max="15" message="The field SerialNumber must be a string with a maximum length of 15"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="fullName" caption="Device Name" >
+    <dxi-validation-rule type="required" message="Name is required"></dxi-validation-rule>
+    <dxi-validation-rule type="stringLength" max="60" message="The field Name must be a string with a maximum length of 15."></dxi-validation-rule>
+    <dxo-header-filter groupInterval="100"></dxo-header-filter>
+  </dxi-column>
+  <dxi-column dataField="productType" caption="Product Type">
+    <dxi-validation-rule type="stringLength" max="15" message="The field ProductType must be a string with a maximum length of 15."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="branchName" caption="Brand Name" dataType="string" >
+    <dxi-validation-rule type="stringLength" max="15" message="The field Brand must be a string with a maximum length of 15."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="ownerId" caption="Owner">
+      <dxo-header-filter groupInterval="100"></dxo-header-filter>
+      <dxo-lookup [dataSource]="usersData"
+                  displayExpr="fullName"
+                  valueExpr="id">
+      </dxo-lookup>
+    <dxi-validation-rule type="range" min="0" max="100" message="The field OwnerId must be between 0 and 2000."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="currentLocationId" caption="Location">
+      <dxo-header-filter groupInterval="100"></dxo-header-filter>
+      <dxo-lookup [dataSource]="locationsData"
+                  displayExpr="adrress"
+                  valueExpr="id">
+      </dxo-lookup>
+    <dxi-validation-rule type="range" min="0" max="2000" message="The field  must be between 0 and 2000."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="receivedDate" dataType="date" caption="Received Date"  [width]="150">
+    <dxi-validation-rule  type="required" message="invalid date"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="locationHistory" caption="Location History" dataType="string">
+    <dxi-validation-rule type="stringLength" max="15" message="The field must be a string with a maximum length of 15."></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column type="buttons">
+      <dxi-button name="edit"></dxi-button>
+      <dxi-button name="delete"></dxi-button>
+      <dxi-button
+          text="History"
+          [visible]="isHistoryButtonVisible"  [onClick]="okClicked">
+          
+      </dxi-button>
+  </dxi-column>
+  
+</dx-data-grid>
+<dx-data-grid [dataSource]="device_location_histories " [(visible)]="popupVisible">
+  id="gridContainer"
+  [showBorders]="true">
+  <dxo-pager [showPageSizeSelector]="false"
+  ></dxo-pager>
+</dx-data-grid>
